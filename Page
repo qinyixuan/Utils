@@ -1,0 +1,87 @@
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * Page
+ *
+ * @author QinYixuan
+ * @date 2018/8/20
+ */
+public class Page<T> implements Serializable {
+
+    private int curPage;
+
+    private int pageSize;
+
+    private int totalNumber;
+
+    private int totalPage;
+
+    private int limitStart;
+
+    private List<T> list;
+
+    public Page(int curPage, int pageSize, int totalNumber) {
+        this.curPage = curPage;
+        this.pageSize = pageSize;
+        this.totalNumber = totalNumber;
+
+        if (pageSize != 0) {
+            if (totalNumber % pageSize == 0) {
+                this.totalPage = totalNumber / pageSize;
+            } else {
+                this.totalPage = (totalNumber / pageSize) + 1;
+            }
+        }
+
+        this.limitStart = (curPage - 1) * pageSize;
+    }
+
+    public int getCurPage() {
+        return curPage;
+    }
+
+    public void setCurPage(int curPage) {
+        this.curPage = curPage;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getTotalNumber() {
+        return totalNumber;
+    }
+
+    public void setTotalNumber(int totalNumber) {
+        this.totalNumber = totalNumber;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public int getLimitStart() {
+        return limitStart;
+    }
+
+    public void setLimitStart(int limitStart) {
+        this.limitStart = limitStart;
+    }
+
+    public List<T> getList() {
+        return list;
+    }
+
+    public void setList(List<T> list) {
+        this.list = list;
+    }
+}
